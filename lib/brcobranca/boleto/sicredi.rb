@@ -12,6 +12,8 @@ module Brcobranca
 
       # <b>REQUERIDO</b>: Byte de identificação do cedente do bloqueto utilizado para compor o nosso número.
       attr_accessor :byte_idt
+       # <b>REQUERIDO</b>: nosso_numero_ano utilizado para compor o nosso número.
+      attr_accessor :nosso_numero_ano
 
       validates_length_of :agencia, maximum: 4, message: 'deve ser menor ou igual a 4 dígitos.'
       validates_length_of :nosso_numero, maximum: 5, message: 'deve ser menor ou igual a 5 dígitos.'
@@ -89,7 +91,7 @@ module Brcobranca
       end
 
       def nosso_numero_with_byte_idt
-        "#{data_processamento.strftime('%y')}#{byte_idt}#{nosso_numero}"
+        "#{nosso_numero_ano}#{byte_idt}#{nosso_numero}"
       end
 
       # Número seqüencial utilizado para identificar o boleto.
